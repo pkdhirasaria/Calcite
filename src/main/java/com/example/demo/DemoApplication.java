@@ -25,17 +25,17 @@ public class DemoApplication {
 		CalciteConnection calciteConnection =
 				connection.unwrap(CalciteConnection.class);
 		SchemaPlus rootSchema = calciteConnection.getRootSchema();
-		JdbcSchema jdbcSchema = JdbcSchema.create(rootSchema,  dataSource.getDefaultCatalog(), dataSource,  null, null);
+		JdbcSchema jdbcSchema = JdbcSchema.create(rootSchema, dataSource.getDefaultCatalog(), dataSource, null, null);
 		rootSchema.add(dataSource.getDefaultCatalog(), jdbcSchema);
 		Statement statement = connection.createStatement();
-		ResultSet rs =   statement.executeQuery("select * from \"test_db\".\"EMP\"");
+		ResultSet rs = statement.executeQuery("select * from \"test_db\".\"EMP\"");
 		DatabaseMetaData metaData = calciteConnection.getMetaData();
-		ResultSet tables = metaData.getTables(dataSource.getDefaultCatalog(),null,null,null);
+		ResultSet tables = metaData.getTables(dataSource.getDefaultCatalog(), null, null, null);
 		while (tables.next()) {
-			System.out.println("Table name: "+tables.getString("Table_NAME"));
-			System.out.println("Table type: "+tables.getString("TABLE_TYPE"));
-			System.out.println("Table schema: "+tables.getString("TABLE_SCHEM"));
-			System.out.println("Table catalog: "+tables.getString("TABLE_CAT"));
+			System.out.println("Table name: " + tables.getString("Table_NAME"));
+			System.out.println("Table type: " + tables.getString("TABLE_TYPE"));
+			System.out.println("Table schema: " + tables.getString("TABLE_SCHEM"));
+			System.out.println("Table catalog: " + tables.getString("TABLE_CAT"));
 			System.out.println(" ");
 		}
 		System.out.println(rs);
@@ -46,7 +46,7 @@ public class DemoApplication {
 	}
 
 	private static void ReadFromSqlList(BasicDataSource dataSource) {
-		String url = "jdbc:sqlite:C:\\Users\\I505412\\OneDrive - SAP SE\\Desktop\\SAP Blue\\DB\\demo.db";
+		String url = "jdbc:sqlite:C:\\Users\\OneDrive - SAP SE\\Desktop\\SAP Blue\\DB\\demo.db";
 		dataSource.setUrl(url);
 		dataSource.setDefaultCatalog("test_db");
 		dataSource.setDriverClassName("org.sqlite.JDBC");
